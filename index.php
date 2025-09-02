@@ -42,7 +42,7 @@ $fn = new Funcoes();
             <td><?php echo $fn->dtNasc($item['dtNasc'], 2);?> </td>
             <td>
                 <a href="editarContato.php?id=<?php echo $item['id']?>">EDITAR</a>    
-                <a href="#">| EXCLUIR</a>    
+                <a href="excluirContato.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Você tem certeza que quer excluir esse contato?')">| EXCLUIR</a>    
             <td>
      
         </tr>

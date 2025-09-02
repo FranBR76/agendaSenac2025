@@ -73,7 +73,7 @@ class Contato {
 
 
         }
-        catch (PDOExcepiton $ex){
+        catch (PDOException $ex){
             echo 'ERRO'.$ex->getMessage();
         }
     }
@@ -118,6 +118,11 @@ class Contato {
                 echo "ERRO: ".$ex->getMessage();
             }
         }
+    }
+    public function deletar($id) {
+        $sql = $this->con->conectar()->prepare("DELETE FROM contatos WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
     }
 
 }   
