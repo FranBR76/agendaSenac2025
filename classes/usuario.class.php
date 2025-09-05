@@ -15,7 +15,7 @@ class Usuario {
     }
 
     private function existeEmail($email) {
-        $sql = $this->con->conectar()->prepare("SELECT id FROM contatos WHERE email = :email"); // puxa o email no banco pra ver se já existe um contato com o email
+        $sql = $this->con->conectar()->prepare("SELECT id FROM usuario WHERE email = :email"); // puxa o email no banco pra ver se já existe um contato com o email
         $sql->bindParam(':email', $email, PDO::PARAM_STR);
         $sql->execute();
 
@@ -33,11 +33,11 @@ class Usuario {
             try {
                 $this->nome = $nome;
                 $this->email = $email;
-                $this->senha = $senha;
+                $this->senha = md5($senha);
                 $this->permissoes = $permissoes;
 
 
-                $sql = $this->con->conectar()->prepare("INSERT INTO contatos(nome,  email, senha, permissoes) VALUES (:nome, :email, :senha, :permissoes)");
+                $sql = $this->con->conectar()->prepare("INSERT INTO usuario(nome,  email, senha, permissoes) VALUES (:nome, :email, :senha, :permissoes)");
                 $sql->bindParam(":nome",             $this->nome,       PDO::PARAM_STR);
                 $sql->bindParam(":email",           $this->email,       PDO::PARAM_STR);
                 $sql->bindParam(":senha",           $this->senha,       PDO::PARAM_STR);
