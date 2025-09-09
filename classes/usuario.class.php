@@ -83,21 +83,22 @@ class Usuario {
             echo "ERRO: ".$ex->getMessage();
         }    
     }
-    public function editar( $nome, $email,  $senha, $permissoes) {
+    public function editar( $nome, $email,  $senha, $permissoes, $id) {
         $emailExistente = $this->existeEmail($email);
         if(count($emailExistente) > 0 && $emailExistente['id'] != $id){
             return FALSE;
         }
         else {
             try{
-                $sql = $this->con->conectar()->prepare("UPDATE usuario SET nome = :nome, :email, senha = :senha, permissoes = :permissoes, WHERE id = :id");
-                $sql->bindParam(":nome",             $this->nome,       PDO::PARAM_STR);
-                $sql->bindParam(":email",           $this->email,       PDO::PARAM_STR);
-                $sql->bindParam(":senha",           $this->senha,       PDO::PARAM_STR);
-                $sql->bindParam(":permissoes",      $this->permissoes,  PDO::PARAM_STR);
+                $sql = $this->con->conectar()->prepare("UPDATE usuario SET nome = :nome,email = :email, senha = :senha, permissoes = :permissoes WHERE id = :id");
+                $sql->bindParam(":nome", $nome, PDO::PARAM_STR);
+                $sql->bindParam(":email", $email, PDO::PARAM_STR);
+                $sql->bindParam(":senha", $senha, PDO::PARAM_STR);
+                $sql->bindParam(":permissoes", $permissoes, PDO::PARAM_STR);
+                $sql->bindParam(":id", $id, PDO::PARAM_STR);
                 $sql->execute();
                 return TRUE;
-            } catch(PDOExeption $ex){
+            } catch(PDOException $ex){
                 echo "ERRO: ".$ex->getMessage();
             }
         }

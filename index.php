@@ -7,8 +7,9 @@ include 'classes/funcoes.class.php';
 $contato = new Contato();
 $fn = new Funcoes(); 
 ?>
-<h1>Agenda Senac 2025</h1>
+<h1>Contatos</h1>
 <button><a href="adicionarContato.php">ADICIONAR</a></button>
+<button><a href="gestaoUsuario.php">GESTÃO USUARIO</a></button>
 
 <table border="3" width="100%" >
     <tr>

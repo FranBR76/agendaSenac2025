@@ -1,9 +1,9 @@
 <?php
 
 require 'inc/header.inc.php';
+require 'classes/usuario.class.php';
 
 //Aqui serve como o submit do usuario
-require 'classes/usuario.class.php';
 $usuario = new Usuario();
 if(isset($_POST['email']) && !empty($_POST['email'])) {
     $nome = addslashes($_POST['nome']);
@@ -11,7 +11,7 @@ if(isset($_POST['email']) && !empty($_POST['email'])) {
     $senha = addslashes($_POST['senha']);
     $permissoes = implode(',',$_POST['permissoes']);
     $usuario->adicionar($email, $nome, $senha, $permissoes);
-    header('Location: index.php');
+    header('Location: gestaoUsuario.php');
 }
 
 
