@@ -18,17 +18,17 @@ require 'inc/header.inc.php';
 
 <form method="POST" action="adicionarContatoSubmit.php">
     Nome: <br>
-    <input type="text" name="nome" /> <br><br>
+    <input type="text" name="nome" placeholder="Digite o nome"/> <br><br>
     Endereço: <br>
-    <input type="text" name="endereco" /> <br><br>
+    <input type="text" name="endereco" placeholder="Digite o endereço" /> <br><br>
     Email: <br>
-    <input type="mail" name="email" /> <br><br>
+    <input type="mail" name="email" placeholder="Digite o email" /> <br><br>
     Telefone: <br>
-    <input type="text" name="telefone" /> <br><br>
+    <input type="text" name="telefone" placeholder="Digite o telefone" /> <br><br>
     Rede Social: <br>
-    <input type="text" name="redeSocial" /> <br><br>
+    <input type="text" name="redeSocial" placeholder="Digite o @ da rede social" /> <br><br>
     Profissão: <br> 
-    <input type="text" name="profissao" /> <br><br>
+    <input type="text" name="profissao" placeholder="Digite a profissão" /> <br><br>
     Foto: <br>
     <input type="text" name="foto" /> <br><br>
     Ativo: <br>

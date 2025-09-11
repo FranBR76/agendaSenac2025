@@ -22,11 +22,11 @@ if(isset($_POST['email']) && !empty($_POST['email'])) {
 
 <form method="POST" >
     Nome: <br>
-    <input type="text" name="nome" /> <br><br>
+    <input type="text" name="nome" placeholder="Digite o nome" /> <br><br>
     Email: <br>
-    <input type="mail" name="email" /> <br><br> 
+    <input type="mail" name="email" placeholder="Digite o email" /> <br><br> 
     Senha: <br>
-    <input type="password" name="senha" /> <br><br>
+    <input type="password" name="senha" placeholder="Digite a senha" /> <br><br>
     
     Permissoes: <br>
     <input type="checkbox" checked id="adicionar" name="permissoes[]" value="adicionar">

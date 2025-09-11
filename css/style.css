@@ -1,32 +1,72 @@
+html,
 body {
+    height: 100%;
+    margin: 0;
     font-family: Arial;
-    background-color: #333;
-    height: 100px;
-    color: white;
-    flex: 1;
-}
 
-header {
-    flex: 1;
-    height: 100px;
-    background-color: aliceblue;
-    color:#333;
-    margin-top: -21px; 
-    margin-inline: -100px;
-    padding-top: 20px;
-    
-    text-align: center;
-}
-
-footer {
-    flex: 1;
-    height: 100px;
-    background-color: #555;
-    margin-inline: -100px;
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    /* faz funcionar em vertical o flex*/
+    min-height: 100vh;
+    /* altura igual o tamanho visivel da tela*/
+
+}
+
+.main {
     flex: 1;
-    height: 100%;
-    margin-inline: 5vw;
+    margin-inline: 100px;
+    /* aumenta o conteudo para preencher espaco*/
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    justify-content: center;
+}
+
+footer {
+    background-color: #444;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    height: 8vw;
+}
+
+button, a {
+    transition: all 0.5s ease-in-out;
+    background-color: #ccc;
+    padding: 1vw;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 2vw;
+    border-radius: 10px;
+    
+}
+
+th, td { 
+    padding: 10px;
+}
+.acoes {
+    transition: all 0.5s ease-in-out;
+    border-radius: 1px;
+    background-color: #ccc;
+    padding: 5px;
+    color: #333;
+    text-decoration: none;
+    
+    
+    
+}
+
+.acoes:hover {
+    text-decoration: underline;
+}
+
+button:hover {
+    transform: scaleX(1.05);
 }

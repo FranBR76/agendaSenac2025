@@ -33,8 +33,8 @@ $fn = new Funcoes();
             <td><?php echo $item['permissoes']; ?></td>
             
             <td>
-                <a href="editarUsuario.php?id=<?php echo $item['id']?>">EDITAR</a>    
-                <a href="excluirUsuario.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Você tem certeza que quer excluir esse usuario?')">| EXCLUIR</a>    
+                <a class='acoes' href="editarUsuario.php?id=<?php echo $item['id']?>">EDITAR</a>    
+                <a class='acoes' href="excluirUsuario.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Você tem certeza que quer excluir esse usuario?')">| EXCLUIR</a>    
             <td>
      
         </tr>
