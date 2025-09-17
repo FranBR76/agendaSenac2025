@@ -93,7 +93,7 @@ class Usuario {
                 $sql = $this->con->conectar()->prepare("UPDATE usuario SET nome = :nome,email = :email, senha = :senha, permissoes = :permissoes WHERE id = :id");
                 $sql->bindParam(":nome", $nome, PDO::PARAM_STR);
                 $sql->bindParam(":email", $email, PDO::PARAM_STR);
-                $sql->bindParam(":senha", $senha, PDO::PARAM_STR);
+                $sql->bindParam(":senha", md5($senha), PDO::PARAM_STR);
                 $sql->bindParam(":permissoes", $permissoes, PDO::PARAM_STR);
                 $sql->bindParam(":id", $id, PDO::PARAM_STR);
                 $sql->execute();

@@ -46,7 +46,7 @@ if(isset($_POST['email']) && !empty($_POST['email'])) {
 
 
 
-<h1>EDITAR USUARIO</h1>
+<h1>EDITAR USUÁRIO</h1>
 
 <form method="POST">
     

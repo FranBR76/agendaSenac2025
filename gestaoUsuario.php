@@ -7,7 +7,7 @@ include 'classes/funcoes.class.php';
 $usuario = new Usuario();
 $fn = new Funcoes(); 
 ?>
-<h1>Usuarios</h1>
+<h1>Usuários</h1>
 <button><a href="adicionarUsuario.php">ADICIONAR</a></button>
 <button><a href="index.php">CONTATOS</a></button>
 
@@ -16,8 +16,8 @@ $fn = new Funcoes();
         <th>ID</th>
         <th>NOME</th>
         <th>EMAIL</th>
-        <th>SENHA</th>
-        <th>PERMISSOES</th>
+        <!-- <th>SENHA</th> -->
+        <th>PERMISSÕES</th>
         <th>AÇÕES</th>
     </tr>
     <?php
@@ -29,13 +29,13 @@ $fn = new Funcoes();
             <td><?php echo $item['id']; ?></td>
             <td><?php echo $item['nome']; ?></td>
             <td><?php echo $item['email']; ?></td>
-            <td><?php echo $item['senha']; ?></td>
+           
             <td><?php echo $item['permissoes']; ?></td>
             
             <td>
                 <a class='acoes' href="editarUsuario.php?id=<?php echo $item['id']?>">EDITAR</a>    
-                <a class='acoes' href="excluirUsuario.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Você tem certeza que quer excluir esse usuario?')">| EXCLUIR</a>    
-            <td>
+                <a class='acoes' href="excluirUsuario.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Você tem certeza que quer excluir esse usuário?')">EXCLUIR</a>    
+    </td>
      
         </tr>
 

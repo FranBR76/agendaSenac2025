@@ -16,29 +16,33 @@ require 'inc/header.inc.php';
 
 <h1>ADICIONAR CONTATO</h1>
 
-<form method="POST" action="adicionarContatoSubmit.php">
-    Nome: <br>
-    <input type="text" name="nome" placeholder="Digite o nome"/> <br><br>
-    Endereço: <br>
-    <input type="text" name="endereco" placeholder="Digite o endereço" /> <br><br>
-    Email: <br>
-    <input type="mail" name="email" placeholder="Digite o email" /> <br><br>
-    Telefone: <br>
-    <input type="text" name="telefone" placeholder="Digite o telefone" /> <br><br>
-    Rede Social: <br>
-    <input type="text" name="redeSocial" placeholder="Digite o @ da rede social" /> <br><br>
-    Profissão: <br> 
-    <input type="text" name="profissao" placeholder="Digite a profissão" /> <br><br>
-    Foto: <br>
-    <input type="text" name="foto" /> <br><br>
-    Ativo: <br>
-    <input type="text" name="ativo" /> <br><br>
-    Data de Nascimento: <br>
-    <input type="date" name="dtNasc" /> <br><br>
-    
-    <input type="submit" name="btCadastrar" value="ADICIONAR" />
-</form>
-
+<div class="card-conteudo">
+    <form method="POST" action="adicionarContatoSubmit.php">
+        <div class="card">
+            Nome: <br>
+            <input type="text" name="nome" placeholder="Digite o nome" required /> <br><br>
+            Endereço: <br>
+            <input type="text" name="endereco" placeholder="Digite o endereço" required /> <br><br>
+            Email: <br>
+            <input type="mail" name="email" placeholder="Digite o email" required /> <br><br>
+            Telefone: <br>
+            <input type="text" name="telefone" placeholder="Digite o telefone" required /> <br><br>
+            Rede Social: <br>
+            <input type="text" name="redeSocial" placeholder="Digite o @ da rede social" /> <br><br>
+        </div>
+        <div class="card">
+            Profissão: <br> 
+            <input type="text" name="profissao" placeholder="Digite a profissão" /> <br><br>
+            Foto: <br>
+            <input type="text" name="foto" /> <br><br>
+            Ativo: <br>
+            <input type="text" name="ativo" /> <br><br>
+            Data de Nascimento: <br>
+            <input type="date" name="dtNasc" /> <br><br>
+            <input type="submit" name="btCadastrar" value="ADICIONAR" />
+        </div>
+    </form>
+</div>
 
 <?php
 require 'inc/footer.inc.php';

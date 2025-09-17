@@ -13,7 +13,7 @@ $fn = new Funcoes();
 
 <h1>Contatos</h1>
 <button><a href="adicionarContato.php">ADICIONAR</a></button>
-<button><a href="gestaoUsuario.php">GESTÃO USUARIO</a></button>
+<button><a href="gestaoUsuario.php">GESTÃO USUÁRIO</a></button>
 
 <table border="3" width="100%" >
     <tr>
@@ -25,7 +25,7 @@ $fn = new Funcoes();
         <th>REDE SOCIAL</th>
         <th>PROFISSÃO</th>
         <th>FOTO</th>
-        <th>ATIVO</th>
+        <!-- <th>ATIVO</th> -->
         <th>NASCIMENTO</th>
         <th>AÇÕES</th>
     </tr>
@@ -43,12 +43,12 @@ $fn = new Funcoes();
             <td><?php echo $item['redeSocial']; ?></td>
             <td><?php echo $item['profissao']; ?></td>
             <td><?php echo $item['foto']; ?></td>
-            <td><?php echo $item['ativo']; ?></td>
+            <!-- <td><?php echo $item['ativo']; ?></td> -->
             <td><?php echo $fn->dtNasc($item['dtNasc'], 2);?> </td>
             <td>
                 <a class="acoes" href="editarContato.php?id=<?php echo $item['id']?>">EDITAR</a>    
                 <a class="acoes" href="excluirContato.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Você tem certeza que quer excluir esse contato?')">EXCLUIR</a>    
-            <td>
+            </td>
      
         </tr>
 

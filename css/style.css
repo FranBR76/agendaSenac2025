@@ -3,6 +3,7 @@ body {
     height: 100%;
     margin: 0;
     font-family: Arial;
+    
 
 }
 
@@ -12,12 +13,14 @@ body {
     /* faz funcionar em vertical o flex*/
     min-height: 100vh;
     /* altura igual o tamanho visivel da tela*/
+    
 
 }
 
 .main {
     flex: 1;
     margin-inline: 100px;
+    
     /* aumenta o conteudo para preencher espaco*/
 }
 
@@ -38,7 +41,7 @@ footer {
 }
 
 button, a {
-    transition: all 0.5s ease-in-out;
+    transition: all 0.2s ease-in-out;
     background-color: #ccc;
     padding: 1vw;
     color: #333;
@@ -46,6 +49,10 @@ button, a {
     margin-bottom: 2vw;
     border-radius: 10px;
     
+}
+
+button {
+    margin-left: 30px;
 }
 
 th, td { 
@@ -69,4 +76,38 @@ th, td {
 
 button:hover {
     transform: scaleX(1.05);
+}
+
+
+
+
+form {
+    background-color: #3493;
+    margin-top: 25px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-inline: 30px;
+    /* text-indent: 12px; */
+    box-shadow: 3px 3px 3px rgba(0,0,0, 0.3);
+    margin-bottom: 20px;
+    font-size: 30px;
+    
+}
+
+input {
+    font-size: 20px;
+
+}
+
+.card-conteudo {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+}
+
+.card {
+    width: 40%;
+    padding: 20px;
+    
+    float: left;
 }

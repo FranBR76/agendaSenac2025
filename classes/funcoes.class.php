@@ -14,6 +14,9 @@ class Funcoes {
         }
         return $rst;
     }
+
+    
+
     //novas funcoes 
 }
 
