@@ -47,36 +47,37 @@ if(isset($_POST['email']) && !empty($_POST['email'])) {
 
 
 <h1>EDITAR USUÁRIO</h1>
-
-<form method="POST">
-    
-    
-    <input type="hidden" name="id" value="<?php echo $info['id']; ?>">
-    
-    
-    Nome: <br>
-    <input type="text" name="nome" value="<?php echo $info['nome']; ?>" /> <br><br>
-    Email: <br>
-    <input type="mail" name="email" value="<?php echo $info['email']; ?>" /> <br><br>
-    Senha: <br>
-    <input type="text" name="senha" value="<?php echo $info['senha']; ?>"/> <br><br>
-    Permissões: <br>
-    <?php foreach ($permissoesDisponiveis as $perm): ?>
-        <label>
-            <input 
-                type="checkbox" 
-                name="permissoes[]" 
-                value="<?php echo $perm; ?>"
-                <?php echo in_array($perm, $permissoesUsuario) ? 'checked' : ''; ?>
-            >
-            <?php echo ucfirst($perm); ?>
-        </label><br>
-    <?php endforeach; ?>
-   
-    
-    <input type="submit" value="SALVAR" />
-</form>
-
+<div class="card-conteudo">
+    <form method="POST">
+        
+        <div class="card" style="width: 100%;" >
+            <input type="hidden" name="id" value="<?php echo $info['id']; ?>">
+            
+            
+            Nome: <br>
+            <input type="text" name="nome" value="<?php echo $info['nome']; ?>" /> <br><br>
+            Email: <br>
+            <input type="mail" name="email" value="<?php echo $info['email']; ?>" /> <br><br>
+            Senha: <br>
+            <input type="text" name="senha" value="<?php echo $info['senha']; ?>"/> <br><br>
+            Permissões: <br>
+            <?php foreach ($permissoesDisponiveis as $perm): ?>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        name="permissoes[]" 
+                        value="<?php echo $perm; ?>"
+                        <?php echo in_array($perm, $permissoesUsuario) ? 'checked' : ''; ?>
+                    >
+                    <?php echo ucfirst($perm); ?>
+                </label><br>
+            <?php endforeach; ?>
+        
+            
+            <input type="submit" value="SALVAR" />
+        </div>
+    </form>
+</div>
 <?php
 require 'inc/footer.inc.php';
 ?>
