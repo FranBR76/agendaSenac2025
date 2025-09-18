@@ -11,7 +11,7 @@ $fn = new Funcoes();
 
 
 
-<h1>Contatos</h1>
+<h1 class="titulo">Contatos</h1>
 <button><a href="adicionarContato.php">ADICIONAR</a></button>
 <button><a href="gestaoUsuario.php">GESTÃO USUÁRIO</a></button>
 
@@ -34,7 +34,7 @@ $fn = new Funcoes();
     foreach($lista as $item):
     ?>
     <tbody>
-        <tr>
+        <tr class="linha">
             <td><?php echo $item['id']; ?></td>
             <td><?php echo $item['nome']; ?></td>
             <td><?php echo $item['endereco']; ?></td>

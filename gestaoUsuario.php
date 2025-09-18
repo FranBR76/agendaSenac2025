@@ -7,7 +7,7 @@ include 'classes/funcoes.class.php';
 $usuario = new Usuario();
 $fn = new Funcoes(); 
 ?>
-<h1>Usuários</h1>
+<h1 class="titulo">Usuários</h1>
 <button><a href="adicionarUsuario.php">ADICIONAR</a></button>
 <button><a href="index.php">CONTATOS</a></button>
 
@@ -25,7 +25,7 @@ $fn = new Funcoes();
     foreach($lista as $item):
     ?>
     <tbody>
-        <tr>
+        <tr class="linha">
             <td><?php echo $item['id']; ?></td>
             <td><?php echo $item['nome']; ?></td>
             <td><?php echo $item['email']; ?></td>
@@ -35,7 +35,7 @@ $fn = new Funcoes();
             <td>
                 <a class='acoes' href="editarUsuario.php?id=<?php echo $item['id']?>">EDITAR</a>    
                 <a class='acoes' href="excluirUsuario.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Você tem certeza que quer excluir esse usuário?')">EXCLUIR</a>    
-    </td>
+            </td>
      
         </tr>
 
