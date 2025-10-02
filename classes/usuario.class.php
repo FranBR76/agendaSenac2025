@@ -83,26 +83,42 @@ class Usuario {
             echo "ERRO: ".$ex->getMessage();
         }    
     }
-    public function editar( $nome, $email,  $senha, $permissoes, $id) {
-        $emailExistente = $this->existeEmail($email);
-        if(count($emailExistente) > 0 && $emailExistente['id'] != $id){
-            return FALSE;
-        }
-        else {
-            try{
-                $sql = $this->con->conectar()->prepare("UPDATE usuario SET nome = :nome,email = :email, senha = :senha, permissoes = :permissoes WHERE id = :id");
+    public function editar($nome, $email, $senha, $permissoes, $id) {
+    $emailExistente = $this->existeEmail($email);
+    if(count($emailExistente) > 0 && $emailExistente['id'] != $id){
+        return FALSE;
+    } else {
+        try {
+            if (empty($senha)) {
+                // Não atualiza a senha
+                $sql = $this->con->conectar()->prepare(
+                    "UPDATE usuario SET nome = :nome, email = :email, permissoes = :permissoes WHERE id = :id"
+                );
                 $sql->bindParam(":nome", $nome, PDO::PARAM_STR);
                 $sql->bindParam(":email", $email, PDO::PARAM_STR);
-                $sql->bindParam(":senha", md5($senha), PDO::PARAM_STR);
                 $sql->bindParam(":permissoes", $permissoes, PDO::PARAM_STR);
-                $sql->bindParam(":id", $id, PDO::PARAM_STR);
-                $sql->execute();
-                return TRUE;
-            } catch(PDOException $ex){
-                echo "ERRO: ".$ex->getMessage();
+                $sql->bindParam(":id", $id, PDO::PARAM_INT);
+            } else {
+                // Atualiza incluindo a senha 
+                $senhaHash = md5($senha);
+                $sql = $this->con->conectar()->prepare(
+                    "UPDATE usuario SET nome = :nome, email = :email, senha = :senha, permissoes = :permissoes WHERE id = :id"
+                );
+                $sql->bindParam(":nome", $nome, PDO::PARAM_STR);
+                $sql->bindParam(":email", $email, PDO::PARAM_STR);
+                $sql->bindParam(":senha", $senhaHash, PDO::PARAM_STR);
+                $sql->bindParam(":permissoes", $permissoes, PDO::PARAM_STR);
+                $sql->bindParam(":id", $id, PDO::PARAM_INT);
             }
+
+            $sql->execute();
+            return TRUE;
+        } catch(PDOException $ex){
+            echo "ERRO: ".$ex->getMessage();
+            return FALSE;
         }
     }
+}
     public function deletar($id) {
         $sql = $this->con->conectar()->prepare("DELETE FROM usuario WHERE id = :id");
         $sql->bindValue(':id', $id);

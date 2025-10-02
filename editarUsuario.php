@@ -1,4 +1,4 @@
-<!-- TODO fazer verificao de checkbox para editar-->
+
  <?php
 
 
@@ -6,19 +6,34 @@ require 'inc/header.inc.php';
 include 'classes/usuario.class.php';
 
 
-
 $usuario = new Usuario();
-
+// CARREGA O USUÁRIO 
 if (!empty($_GET['id'])) {
-    $id = $_GET['id'];
+    $id = (int) $_GET['id'];
     $info = $usuario->buscar($id);
 
     if (empty($info['email'])) {
+        // usuário não encontrado -> volta pra listagem
         header("Location: /agendaSenac2025");
         exit;
     }
-} else{
+} else {
+    // id não foi informado -> volta pra listagem
     header("Location: /agendaSenac2025");
+    exit;
+}
+
+
+if (isset($_POST['email']) && !empty($_POST['email'])) {
+    $nome = addslashes($_POST['nome']);
+    $email = addslashes($_POST['email']);
+    // senha pode vir vazia — a função editar deve manter a senha atual quando vazia
+    $senha = isset($_POST['senha']) ? trim($_POST['senha']) : '';
+    $permissoes = isset($_POST['permissoes']) ? implode(',', $_POST['permissoes']) : '';
+    $id = (int) $_POST['id'];
+
+    $usuario->editar($nome, $email, $senha, $permissoes, $id);
+    header('Location: gestaoUsuario.php');
     exit;
 }
 
@@ -37,7 +52,11 @@ if(isset($_POST['email']) && !empty($_POST['email'])) {
     header('Location: gestaoUsuario.php');
 }
 
-
+$permissoesDisponiveis = ['adicionar', 'editar', 'excluir', 'super'];
+$permissoesUsuario = [];
+if (!empty($info['permissoes'])) {
+    $permissoesUsuario = explode(',', $info['permissoes']);
+}
 ?>
 
 
@@ -59,7 +78,7 @@ if(isset($_POST['email']) && !empty($_POST['email'])) {
             Email: <br>
             <input type="mail" name="email" value="<?php echo $info['email']; ?>" /> <br><br>
             Senha: <br>
-            <input type="text" name="senha" value="<?php echo $info['senha']; ?>"/> <br><br>
+            <input type="password" name="senha" value="" placeholder="Deixe em branco para manter a senha atual" /> <br><br>
             Permissões: <br>
             <?php foreach ($permissoesDisponiveis as $perm): ?>
                 <label>
