@@ -78,7 +78,7 @@ if (!empty($info['permissoes'])) {
             Email: <br>
             <input type="mail" name="email" value="<?php echo $info['email']; ?>" /> <br><br>
             Senha: <br>
-            <input type="password" name="senha" value="" placeholder="Deixe em branco para manter a senha atual" /> <br><br>
+            <input type="password" name="senha" value=""  placeholder="Deixe vazio para manter" /> <br><br>
             Permissões: <br>
             <?php foreach ($permissoesDisponiveis as $perm): ?>
                 <label>
