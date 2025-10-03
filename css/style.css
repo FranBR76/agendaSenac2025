@@ -30,6 +30,24 @@ font-size: 40px;
 
 }
 
+
+.esqueceuSenha {
+    text-decoration: none;
+    color: #7566D9;
+    padding: 0;   
+    background-color: transparent;
+    font-size: small;
+    margin-left: 40px;
+    
+}
+
+.esqueceuSenha:hover {
+    text-decoration: underline;
+    background-color: transparent;
+    color: #7566D9;
+}
+
+
 .main {
     flex: 1;
     margin-inline: 100px;
