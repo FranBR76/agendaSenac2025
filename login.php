@@ -1,10 +1,12 @@
 <?php
 session_start();
+require "inc/header.inc.php";
+
 
 require 'classes/usuario.class.php';
 if(!empty($_POST['email'])){
     $email = addslashes($_POST['email']);
-    $senha = addslashes($_POST['senha']);
+    $senha = md5($_POST['senha']);
 
     $usuario = new Usuario();
     if($usuario->fazerLogin($email, $senha)){
@@ -12,11 +14,9 @@ if(!empty($_POST['email'])){
         exit();
     }
     else {
-        echo '<span style="color: red;">'."Usuario e/ou senha incorretos!".'</span>';
+        echo '<span style="color: red; justify-content: center; font-size: 24px;">'."Usuario e/ou senha incorretos!".'</span>';
     }
 }
-
-require "inc/header.inc.php";
 
 
 ?>
@@ -33,7 +33,7 @@ require "inc/header.inc.php";
         <input type="email" name="email"> <br><br>
         Senha: <br>
         <input type="password" name="senha"> <br><br>
-        <input type="submit" value="SALVAR">
+        <input type="submit" value="LOGIN">
 
         <a class="esqueceuSenha" href="esqueceuSenha.php">ESQUECEU SENHA?</a>
         

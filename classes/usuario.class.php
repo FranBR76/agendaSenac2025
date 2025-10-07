@@ -1,5 +1,5 @@
 <?php
-require 'conexao.class.php';
+require_once 'conexao.class.php';
 
 class Usuario {
     private $id;
@@ -79,7 +79,7 @@ class Usuario {
                 return array();
             }
         }
-        catch(PDOExcepiton $ex) {
+        catch(PDOException $ex) {
             echo "ERRO: ".$ex->getMessage();
         }    
     }

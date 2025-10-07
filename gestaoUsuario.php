@@ -10,7 +10,7 @@ $fn = new Funcoes();
 <h1 class="titulo">Usuários</h1>
 <button><a href="adicionarUsuario.php">ADICIONAR</a></button>
 <button><a href="index.php">CONTATOS</a></button>
-
+   <a class="sair" href="sair.php">SAIR</a>
 <table border="3" width="100%" >
     <tr>
         <th>ID</th>

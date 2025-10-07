@@ -1,8 +1,18 @@
-<?php include 'inc/header.inc.php'; ?>
 <?php 
-
+session_start();
+include 'inc/header.inc.php';
 include 'classes/contato.class.php'; 
 include 'classes/funcoes.class.php'; 
+include 'classes/usuario.class.php';
+
+
+if(!isset($_SESSION['logado'])) {
+    header('Location: login.php');
+    exit;
+}
+
+
+$usuario = new Usuario();
 
 $contato = new Contato();
 $fn = new Funcoes(); 
@@ -14,6 +24,7 @@ $fn = new Funcoes();
 <h1 class="titulo">Contatos</h1>
 <button><a href="adicionarContato.php">ADICIONAR</a></button>
 <button><a href="gestaoUsuario.php">GESTÃO USUÁRIO</a></button>
+   <a class="sair" href="sair.php">SAIR</a>
 
 <table border="3" width="100%" >
     <tr>
