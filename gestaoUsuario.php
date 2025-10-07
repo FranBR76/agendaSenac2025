@@ -1,8 +1,15 @@
 <?php include 'inc/header.inc.php'; ?>
 <?php 
-
+session_start();
 include 'classes/usuario.class.php'; 
 include 'classes/funcoes.class.php'; 
+
+
+if(!isset($_SESSION['logado'])) {
+    header('Location: login.php');
+    exit;
+}
+
 
 $usuario = new Usuario();
 $fn = new Funcoes(); 

@@ -35,7 +35,8 @@ if(!empty($_POST['email'])){
         <input type="password" name="senha"> <br><br>
         <input type="submit" value="LOGIN">
 
-        <a class="esqueceuSenha" href="esqueceuSenha.php">ESQUECEU SENHA?</a>
+        <a class="esqueceuSenha" href="esqueceuSenha.php">ESQUECEU SENHA?</a><br>
+        <a class="esqueceuSenha" style="margin-left: 0;" href="adicionarUsuario.php">Não possui conta? Crie uma</a>
         
     </div>
 </form>
