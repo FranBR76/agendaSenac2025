@@ -141,4 +141,26 @@ class Usuario {
         
 
     }
+
+    public function setUsuario($id) {
+        $this->id = $id;
+        $sql = $this->con->conectar()->prepare("SELECT * FROM usuario WHERE id = :id");
+        $sql->bindValue(":id", $id);
+        $sql->execute();
+
+        if($sql->rowCount() > 0) {
+            $sql = $sql->fetch();
+            $this->permissoes = explode(',', $sql['permissoes']);
+
+        }   
+    }
+    public function temPermissao($p) {
+        if(in_array($p, $this->permissoes)) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+    public function getPermissoes() {
+        return $this->permissoes;
+    }
 }

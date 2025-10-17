@@ -13,7 +13,7 @@ if(!isset($_SESSION['logado'])) {
 
 
 $usuario = new Usuario();
-
+$usuario->setUsuario($_SESSION['logado']);
 $contato = new Contato();
 $fn = new Funcoes(); 
 ?>
@@ -22,9 +22,13 @@ $fn = new Funcoes();
 
 
 <h1 class="titulo">Contatos</h1>
+<?php if($usuario->temPermissao("adicionar")): ?>
 <button><a href="adicionarContato.php">ADICIONAR</a></button>
-<button><a href="gestaoUsuario.php">GESTÃO USUÁRIO</a></button>
-   <a class="sair" href="sair.php">SAIR</a>
+<?php endif; ?>
+<?php if($usuario->temPermissao("super")): ?>
+<button><a href="gestaoUsuario.php">GESTÃO USUÁRIOS</a></button>
+<?php endif; ?>
+<a class="sair" href="sair.php">SAIR</a>
 
 <table border="3" width="100%" >
     <tr>
@@ -57,8 +61,12 @@ $fn = new Funcoes();
             <!-- <td><?php echo $item['ativo']; ?></td> -->
             <td><?php echo $fn->dtNasc($item['dtNasc'], 2);?> </td>
             <td>
+                <?php if($usuario->temPermissao('editar')): ?>
                 <a class="acoes" href="editarContato.php?id=<?php echo $item['id']?>">EDITAR</a>    
+                <?php endif; ?>
+                <?php if($usuario->temPermissao('excluir')): ?>
                 <a class="acoes" href="excluirContato.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Você tem certeza que quer excluir esse contato?')">EXCLUIR</a>    
+                <?php endif; ?>
             </td>
      
         </tr>
