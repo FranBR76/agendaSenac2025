@@ -108,11 +108,49 @@ class Contato {
                 $sql->bindValue(':telefone', $telefone);
                 $sql->bindValue(':redeSocial', $redeSocial);
                 $sql->bindValue(':profissao', $profissao);
-                $sql->bindValue(':foto', $foto);
+                // $sql->bindValue(':foto', $foto);
                 $sql->bindValue(':ativo', $ativo);
                 $sql->bindValue(':dtNasc', $dtNasc);
                 $sql->bindValue(':id', $id);
                 $sql->execute();
+
+                //inserir imagem se houver
+                if(count($foto) > 0) {
+                    for($q=0; q < count($foto['tmp_name']); $q++) {
+                        $tipo = $foto['type'][$q];
+                        if(in_array($tipo, array('image/jpeg', 'image/png'))){
+                            $tmpname = md5(time().rand(0, 9999)).'jpg';
+                            move_uploaded_file($foto['tmp_name'][$q],'image/contatos/'.$tmpname);
+                            list($width_orig, $height_orig) = getimagesize('image/contatos/'.$tmpname);
+                            $ratio = $width_orig/$height_orig;
+
+                            $width = 500;
+                            $height = 500;
+                            if($width/$height > $ratio) {
+                                $width = $height * $ratio;
+                            } else {
+                                $height = $width/$ratio;
+                            }
+                            $img = imagecreatetruecolor($width, $height);
+                            if ($tipo === 'image/jpeg') {
+                                $origi = imagecreatefromjpeg('image/contatos/'.$tmpname);
+
+                            } else if($tipo == 'image/png') {
+                                $origi = imagecreatefrompng('image/contatos/'.$tmpname);
+                            }
+                            imagecopyresampled($img, $origi, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+
+                            //salvar imagem no servidor
+                            imagejpeg($img, 'image/contatos/'.$tmpname, 80);
+                            //salvar a url da foto no banco de dados
+                            $sql = $this->con->conectar()->prepare("INSERT INTO foto_contato SET id_contato = :id_contato, url = :url");
+                            $sql->bindValue(":id_contato", $id);
+                            $sql->bindValue(":url", $tmpname);
+                            $sql->execute();
+                        }
+                    }
+                }
+
                 return TRUE;
             } catch(PDOExeption $ex){
                 echo "ERRO: ".$ex->getMessage();
