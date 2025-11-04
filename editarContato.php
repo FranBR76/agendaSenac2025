@@ -26,6 +26,36 @@ if (!empty($_GET['id'])) {
     header("Location: /agendaSenac2025");
     exit;
 }
+    if(!empty($_POST['id'])){
+    $nome = $_POST['nome'];
+    $endereco = $_POST['endereco'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+    $redeSocial = $_POST['redeSocial'];
+    $profissao = $_POST['profissao'];
+    if(isset($_FILES['foto'])) {
+       $foto = $_FILES['foto'];
+    }
+    else {
+        $foto = array();
+    }
+    $ativo = $_POST['ativo'];
+    $dtNasc = $_POST['dtNasc'];
+    $id = $_POST['id'];
+
+    if(!empty($email)) {
+        $contato->editar($nome,  $endereco, $email, $telefone, $redeSocial, $profissao, $foto, $ativo, $dtNasc, $_GET['id']);
+    }
+    header ("Location: /agendaSenac2025");
+    }
+    if(isset($_GET['id']) && !empty($_GET['id'])) {
+        $info = $contato->getContato($_GET['id']);
+    } else{
+        ?>
+            <script type="text/javascript">window.location.href="index.php";</script>
+        <?php
+        exit;
+    }
 ?>
 
 <button class="btnVoltar" ><a href="index.php">VOLTAR</a></button>
@@ -33,7 +63,7 @@ if (!empty($_GET['id'])) {
 
 
 <div class="card-conteudo">
-<form method="POST" action="editarContatoSubmit.php">
+<form method="POST" enctype="multipart/form-data"> <!-- permite adicionar imagens no form -->
    
 
     <div class="card">
@@ -54,7 +84,18 @@ if (!empty($_GET['id'])) {
         Profissão: <br> 
         <input type="text" name="profissao" value="<?php echo $info['profissao']; ?>" /> <br><br>
         Foto: <br>
-        <input type="text" name="foto" value="<?php echo $info['foto']; ?>" /> <br><br>
+        <input type="file" name="foto[]" multiple /> <br><br>
+        <div class="grupo">
+            <div class="cabecalho">Foto Contato</div>
+            <div class="corpo">
+                <?php foreach($info['foto'] as $fotos): ?>
+                    <div class="foto_item">
+                        <img src="image/contatos/<?php echo $fotos['url']; ?>" />
+                        <a href="excluir_foto.php?id=<?php $fotos['id'];?>">Excluir imagem</a>
+                    </div>
+                <?php endforeach;?>
+            </div>
+        </div>
         Ativo: <br>
         <input type="text" name="ativo" value="<?php echo $info['ativo']; ?>" /> <br><br>
         Data de Nascimento: 
