@@ -64,18 +64,29 @@ class Contato {
         }
 
     }
-
+    
     public function listar() {
         try{
             $sql = $this->con->conectar()->prepare("SELECT * FROM contatos");
             $sql->execute();
             return $sql->fetchAll();
-
-
+            
+            
         }
         catch (PDOException $ex){
             echo 'ERRO'.$ex->getMessage();
         }
+    }
+    public function getFoto() {
+        $array = array();
+        $sql = $this->con->conectar()->prepare("SELECT *, 
+        (select foto_contato.url from foto_contato where foto_contato.id_contato = contatos.id limit 1) as url FROM contatos ");
+        $sql->execute();
+        if($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+
+        }
+        return $array;
     }
 
     public function buscar($id) {
@@ -101,14 +112,14 @@ class Contato {
         }
         else {
             try{
-                $sql = $this->con->conectar()->prepare("UPDATE contatos SET nome = :nome, endereco = :endereco, email = :email, telefone = :telefone, redeSocial = :redeSocial, profissao = :profissao, foto = :foto, ativo = :ativo, dtNasc = :dtNasc WHERE id = :id");
+                $sql = $this->con->conectar()->prepare("UPDATE contatos SET nome = :nome, endereco = :endereco, email = :email, telefone = :telefone, redeSocial = :redeSocial, profissao = :profissao,  ativo = :ativo, dtNasc = :dtNasc WHERE id = :id");
                 $sql->bindValue(':nome', $nome);
                 $sql->bindValue(':endereco', $endereco);
                 $sql->bindValue(':email', $email);
                 $sql->bindValue(':telefone', $telefone);
                 $sql->bindValue(':redeSocial', $redeSocial);
                 $sql->bindValue(':profissao', $profissao);
-                // $sql->bindValue(':foto', $foto);
+            
                 $sql->bindValue(':ativo', $ativo);
                 $sql->bindValue(':dtNasc', $dtNasc);
                 $sql->bindValue(':id', $id);
@@ -116,10 +127,10 @@ class Contato {
 
                 //inserir imagem se houver
                 if(count($foto) > 0) {
-                    for($q=0; q < count($foto['tmp_name']); $q++) {
+                    for($q=0; $q < count($foto['tmp_name']); $q++) {
                         $tipo = $foto['type'][$q];
                         if(in_array($tipo, array('image/jpeg', 'image/png'))){
-                            $tmpname = md5(time().rand(0, 9999)).'jpg';
+                            $tmpname = md5(time().rand(0, 9999)).'.jpg';
                             move_uploaded_file($foto['tmp_name'][$q],'image/contatos/'.$tmpname);
                             list($width_orig, $height_orig) = getimagesize('image/contatos/'.$tmpname);
                             $ratio = $width_orig/$height_orig;
@@ -181,4 +192,5 @@ class Contato {
         }
         return $array;
     }
+
 }   
